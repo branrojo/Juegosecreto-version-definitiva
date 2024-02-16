@@ -14,17 +14,23 @@ function verificarIntento() {
     // Verificar si el valor ingresado es un número entero del 1 al 10
     if (!isNaN(numeroDeUsuario) && numeroDeUsuario % 1 === 0 && numeroDeUsuario >= 1 && numeroDeUsuario <= 10) {
         numeroDeUsuario = parseInt(numeroDeUsuario); // Convertir a entero
-        // Incrementar el número de intentos solo si se ha ingresado un número válido
-        intentos++;
-
-        if (numeroDeUsuario === numeroSecreto) {
-            asignarTextoElemento('p',`Acertaste el número en ${intentos} ${(intentos === 1) ? 'vez' : 'veces'}`);
+        
+        if (intentos >= 10) { // Verificar si se ha alcanzado el máximo de intentos
+            asignarTextoElemento('p', 'Has alcanzado el máximo de intentos. El número secreto era ' + numeroSecreto);
             document.getElementById('reiniciar').removeAttribute('disabled');
         } else {
-            if (numeroDeUsuario > numeroSecreto) {
-                asignarTextoElemento('p','El número secreto es menor');
+            // Incrementar el número de intentos solo si se ha ingresado un número válido
+            intentos++;
+
+            if (numeroDeUsuario === numeroSecreto) {
+                asignarTextoElemento('p',`Acertaste el número en ${intentos} ${(intentos === 1) ? 'vez' : 'veces'}`);
+                document.getElementById('reiniciar').removeAttribute('disabled');
             } else {
-                asignarTextoElemento('p','El número secreto es mayor');
+                if (numeroDeUsuario > numeroSecreto) {
+                    asignarTextoElemento('p','El número secreto es menor');
+                } else {
+                    asignarTextoElemento('p','El número secreto es mayor');
+                }
             }
         }
     } else {
@@ -34,7 +40,6 @@ function verificarIntento() {
 
     limpiarCaja();
 }
-
 
 function limpiarCaja() {
     document.querySelector('#valorUsuario').value = '';
