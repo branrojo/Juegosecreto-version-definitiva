@@ -15,7 +15,7 @@ function verificarIntento() {
     if (!isNaN(numeroDeUsuario) && numeroDeUsuario % 1 === 0 && numeroDeUsuario >= 1 && numeroDeUsuario <= 10) {
         numeroDeUsuario = parseInt(numeroDeUsuario); // Convertir a entero
         
-        if (intentos >= 10) { // Verificar si se ha alcanzado el máximo de intentos
+        if (intentos = 10) { // Verificar si se ha alcanzado el máximo de intentos
             asignarTextoElemento('p', 'Has alcanzado el máximo de intentos. El número secreto era ' + numeroSecreto);
             document.getElementById('reiniciar').removeAttribute('disabled');
         } else {
